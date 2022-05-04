@@ -21,7 +21,7 @@ class Persiptron(object):
         self.eta = eta  #Темп обучения
         self.n_iter = n_iter  #Количество итераций (уроков)
 
-    def fit(self, X, y):
+    def fit(self, X, y): #веса будут обновляться путем минимизации функции стоимости методом градиентного спуска
         self.w_ = np.zeros(1 + X.shape[1])  # w_ - одномерный массив - веса после обучения
 
         self.errors_ = []  # список ошибок
@@ -109,3 +109,5 @@ plt.xlabel('Длина чашелистика, см')
 plt.ylabel('Длина лепестка, см')
 plt.legend(loc='upper_left')
 plt.show()
+
+
