@@ -17,7 +17,7 @@ def deriv_sigmoid(x):
 def mse_loss(y_true, y_pred): # расчет среднеквадратичной ошибки
     return ((y_true - y_pred) ** 2).mean() # y_true и y_pred являются массивами с одинаковой длиной
 
-class OurNeuralNetwork:
+class OurNeuralNetwork: # creating neural network
     def __init__(self):
         self.w1 = np.random.normal() #вес
         self.w2 = np.random.normal()
@@ -35,8 +35,8 @@ class OurNeuralNetwork:
         o1 = sigmoid(self.w5 * h1 + self.w6 * h2 + self.b3)
         return o1
 
-    def train(self, data, all_y_trues):
-        learn_rate = 0.1
+    def train(self, data, all_y_trues): #algorythm of training
+        learn_rate = 0.1 #speed
         epochs = 1000 # количество циклов во всем наборе данных
         for epoch in range(epochs):
             for x, y_true in zip(data, all_y_trues):
@@ -73,6 +73,17 @@ class OurNeuralNetwork:
                 loss = mse_loss(all_y_trues, y_preds)
                 print("Epoch %d loss: %.3f" % (epoch, loss))
 
+        print('w1 = ', self.w1)
+        print('w2 = ', self.w2)
+        print('b1 = ', self.b1)
+        print('w3 = ', self.w3)
+        print('w4 = ', self.w4)
+        print('b2 = ', self.b2)
+        print('w5 = ', self.w5)
+        print('w6 = ', self.w6)
+        print('b3 = ', self.b3)
+
+
 data = np.array([
     [-2, -1],  #Alice
     [25, 6],  #Bob
@@ -88,3 +99,8 @@ all_y_trues = np.array([
 
 network = OurNeuralNetwork()
 network.train(data, all_y_trues)
+
+emily = np.array([-7, -3]) #weight and height
+frank = np.array([20, 2])
+print("Emily: %.3f" % network.feedforward(emily))
+print("Frank: %.3f" % network.feedforward(frank))
